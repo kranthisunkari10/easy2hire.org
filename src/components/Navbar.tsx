@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import { NAV } from '../data/site'
-import { Button } from './Button'
+import { NAV, ROUTES } from '../config/routes'
+import { Button } from './ui/Button'
+import { Logo } from './ui/Logo'
 import { cn } from '../lib/cn'
 
 export function Navbar() {
@@ -12,14 +13,11 @@ export function Navbar() {
     <header className="sticky top-0 z-50">
       <div className="glass border-b border-black/[0.06]">
         <div className="mx-auto flex h-11 max-w-[1080px] items-center justify-between px-4">
-          <Link to="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
-            <img src="/easy2hire.png" alt="Easy2Hire" className="h-7 w-7 object-contain" />
-            <span className="text-[13px] font-semibold tracking-[-0.03em] text-label">
-              Easy2Hire
-            </span>
+          <Link to={ROUTES.home} className="flex items-center" onClick={() => setOpen(false)}>
+            <Logo />
           </Link>
 
-          <nav className="hidden items-center gap-0.5 md:flex">
+          <nav className="hidden items-center gap-0.5 md:flex" aria-label="Primary">
             {NAV.map((item) => (
               <NavLink
                 key={item.to}
@@ -37,13 +35,14 @@ export function Navbar() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <Button to="/get-started" className="hidden sm:inline-flex">
+            <Button to={ROUTES.getStarted} className="hidden sm:inline-flex">
               Get started
             </Button>
             <button
               type="button"
               className="flex h-8 w-8 items-center justify-center rounded-full bg-black/[0.05] md:hidden"
               aria-label={open ? 'Close menu' : 'Open menu'}
+              aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
             >
               <span className="relative block h-3 w-3.5">
@@ -80,7 +79,7 @@ export function Navbar() {
             transition={{ duration: 0.2 }}
             className="glass border-b border-black/[0.06] md:hidden"
           >
-            <nav className="mx-auto flex max-w-[1080px] flex-col gap-0.5 px-4 py-3">
+            <nav className="mx-auto flex max-w-[1080px] flex-col gap-0.5 px-4 py-3" aria-label="Mobile">
               {NAV.map((item) => (
                 <NavLink
                   key={item.to}
@@ -91,7 +90,7 @@ export function Navbar() {
                   {item.label}
                 </NavLink>
               ))}
-              <Button to="/get-started" className="mt-1 w-full" onClick={() => setOpen(false)}>
+              <Button to={ROUTES.getStarted} className="mt-1 w-full" onClick={() => setOpen(false)}>
                 Get started
               </Button>
             </nav>

@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion'
+import { publicAsset } from '../lib/urls'
 
 const jobs = [
   { role: 'Cloud Support Associate', company: 'Northstar', score: 96, state: 'Applied' },
   { role: 'Salesforce Admin', company: 'Helix CRM', score: 94, state: 'Applied' },
   { role: 'Junior DevOps', company: 'Harbor Labs', score: 92, state: 'Queued' },
-]
+] as const
 
 export function DeviceMock() {
   return (
@@ -26,7 +27,7 @@ export function DeviceMock() {
                 <p className="text-[10px] font-medium text-secondary">Portal</p>
                 <p className="text-[15px] font-semibold tracking-[-0.03em] text-label">Today</p>
               </div>
-              <img src="/easy2hire.png" alt="" className="h-7 w-7 object-contain" />
+              <img src={publicAsset('easy2hire.png')} alt="" className="h-7 w-7 object-contain" />
             </div>
           </div>
 

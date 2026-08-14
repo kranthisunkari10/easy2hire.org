@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://easy2hire.org/sitemap.xml
+Sitemap: https://kranthisunkari10.github.io/easy2hire.org/sitemap.xml

@@ -1,23 +1,14 @@
-import { useEffect } from 'react'
-import { Outlet, useLocation } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import { Navbar } from './Navbar'
 import { Footer } from './Footer'
-import { getLenis, useLenis } from '../hooks/useLenis'
-
-function ScrollToTop() {
-  const { pathname } = useLocation()
-  useEffect(() => {
-    getLenis()?.scrollTo(0, { immediate: true })
-    window.scrollTo(0, 0)
-  }, [pathname])
-  return null
-}
+import { useLenis } from '../hooks/useLenis'
+import { useScrollToTop } from '../hooks/useScrollToTop'
 
 export function Layout() {
   useLenis()
+  useScrollToTop()
   return (
     <div className="flex min-h-svh flex-col">
-      <ScrollToTop />
       <Navbar />
       <main className="flex-1">
         <Outlet />

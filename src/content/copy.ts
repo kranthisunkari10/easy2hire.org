@@ -1,63 +1,3 @@
-export const SITE = {
-  name: 'Easy2Hire',
-  url: 'https://easy2hire.org',
-  email: 'hello@easy2hire.org',
-  formEmail: 'kranhisunkari10@gmail.com',
-  phoneDisplay: '+91 77 93 93 33 93',
-  phoneTel: '+917793933393',
-  whatsapp: '917793933393',
-  address: 'Hyderabad, Telangana, India',
-  markets: ['USA', 'Canada', 'Australia', 'New Zealand'],
-}
-
-export const NAV = [
-  { to: '/services', label: 'Services' },
-  { to: '/how-it-works', label: 'How it works' },
-  { to: '/about', label: 'About' },
-  { to: '/contact', label: 'Contact' },
-]
-
-export const SILVER = {
-  id: 'silver',
-  name: 'Silver',
-  eyebrow: 'You apply, we prepare',
-  price: 65,
-  blurb:
-    'Generate job-specific, ATS-ready resumes with the same tooling our specialists use — then apply on your schedule.',
-  features: [
-    'Unlimited job-specific resumes',
-    '90+ ATS score on every resume',
-    'Job-wise customization in minutes',
-    'Student portal for tracking',
-    'ATS-friendly IT resume templates',
-    'Keyword optimization for each description',
-    'Download and manage every version',
-    'Email support for resume questions',
-  ],
-}
-
-export const GOLD = {
-  id: 'gold',
-  name: 'Gold',
-  eyebrow: 'We apply for you',
-  price: 300,
-  popular: true,
-  blurb:
-    'Our team runs the application process while you study, certify, and interview. Maximum coverage, minimum grind.',
-  features: [
-    'Premium resume tailored to every job',
-    '95+ ATS-optimized score target',
-    'Up to 50 applications per day',
-    'Daily IT applications by specialists',
-    'Dedicated account manager',
-    'Dashboard: jobs, descriptions, resumes',
-    'Industry-specific keyword strategy',
-    'Performance monitoring and refinements',
-    'Mock interviews and career coaching',
-    'Certification roadmap and guidance',
-  ],
-}
-
 export const WHY = [
   {
     title: 'Affordable and clear',
@@ -83,7 +23,7 @@ export const WHY = [
     title: 'Human team, precise tooling',
     body: 'AI speeds up matching and scoring. Specialists review, apply, and coach so nothing feels generic.',
   },
-]
+] as const
 
 export const STEPS = [
   {
@@ -106,7 +46,7 @@ export const STEPS = [
     title: 'Interview and certify',
     body: 'Mock interviews, feedback, and certification roadmaps for AWS, Azure, Salesforce, and more.',
   },
-]
+] as const
 
 export const STORIES = [
   {
@@ -145,7 +85,7 @@ export const STORIES = [
     name: 'Sofia L.',
     place: 'Vancouver, BC',
   },
-]
+] as const
 
 export const CERTS = [
   'AWS',
@@ -156,4 +96,25 @@ export const CERTS = [
   'Snowflake',
   'Databricks',
   'Cisco',
-]
+] as const
+
+export const EXTRAS = [
+  {
+    title: 'Mock interviews & coaching',
+    body: 'Practice with people who know current IT recruiter loops — technical and behavioral.',
+    points: [
+      'One-on-one mock interviews',
+      'Role-specific question sets',
+      'Written feedback and an improvement plan',
+    ],
+  },
+  {
+    title: 'Certifications & learning',
+    body: 'Navigate AWS, Azure, Salesforce, and more with a roadmap, resources, and accountability.',
+    points: [
+      'Certification roadmap planning',
+      'Curated study guidance',
+      'Check-ins through exam day',
+    ],
+  },
+] as const

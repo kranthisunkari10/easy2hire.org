@@ -1,19 +1,47 @@
-import { useMemo } from 'react'
-import { useSearchParams } from 'react-router-dom'
-import { SITE } from '../data/site'
-import { Button } from '../components/Button'
-import { SectionHead } from '../components/Reveal'
+import { useMemo, useState, type FormEvent } from 'react'
+import { useNavigate, useSearchParams } from 'react-router-dom'
+import { FORM_LIMITS, SITE } from '../config/site'
+import { ROUTES } from '../config/routes'
+import { GOLD, SILVER, isPlanId } from '../content/plans'
+import { Button } from '../components/ui/Button'
+import { HoneypotField, SelectField, TextAreaField, TextField } from '../components/ui/Field'
+import { PageHero } from '../components/ui/Reveal'
+import { parseLeadForm } from '../lib/form'
 import { Seo } from '../lib/seo'
+import { submitLead } from '../lib/submitLead'
 
 export function GetStarted() {
   const [params] = useSearchParams()
-  const plan = params.get('plan') === 'gold' ? 'gold' : params.get('plan') === 'silver' ? 'silver' : ''
-  const next = `${SITE.url}/thanks`
+  const navigate = useNavigate()
+  const requestedPlan = params.get('plan')
+  const plan = isPlanId(requestedPlan) ? requestedPlan : ''
+  const [status, setStatus] = useState<'idle' | 'sending' | 'error'>('idle')
+  const [error, setError] = useState('')
 
   const subject = useMemo(
     () => (plan ? `Easy2Hire ${plan} inquiry` : 'Easy2Hire inquiry'),
     [plan],
   )
+
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    const parsed = parseLeadForm(new FormData(event.currentTarget))
+    if (!parsed.ok) {
+      setError(parsed.error)
+      setStatus('error')
+      return
+    }
+
+    setStatus('sending')
+    setError('')
+    try {
+      await submitLead(parsed.value, subject)
+      navigate(ROUTES.thanks, { replace: true })
+    } catch {
+      setStatus('error')
+      setError('Could not send. Email us directly and we will follow up.')
+    }
+  }
 
   return (
     <>
@@ -21,95 +49,76 @@ export function GetStarted() {
         title="Get started — Easy2Hire"
         description="Tell us your target role and preferred plan. We will follow up with next steps for Silver or Gold."
       />
-      <section className="mesh px-4 py-10">
-        <SectionHead
-          eyebrow="Get started"
-          title="Tell us where you want to land."
-          body="Share a few details. We will reply with a plan, timeline, and what we need from you."
-        />
+      <PageHero
+        eyebrow="Get started"
+        title="Tell us where you want to land."
+        body="Share a few details. We will reply with a plan, timeline, and what we need from you."
+      />
+      <section className="px-4 pb-12">
         <form
-          action={`https://formsubmit.co/${SITE.formEmail}`}
-          method="POST"
-          className="mx-auto mt-6 max-w-[520px] space-y-3 rounded-[20px] bg-white p-5 card-shadow"
+          onSubmit={onSubmit}
+          className="relative mx-auto max-w-[520px] space-y-3 rounded-[20px] bg-white p-5 card-shadow"
+          noValidate
         >
-          <input type="hidden" name="_subject" value={subject} />
-          <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="_next" value={next} />
-          <input type="hidden" name="_template" value="table" />
-
-          <Field label="Full name" name="name" required />
-          <Field label="Email" name="email" type="email" required />
-          <Field label="Phone / WhatsApp" name="phone" />
-          <label className="block">
-            <span className="mb-1 block text-[12px] font-medium text-secondary">Country</span>
-            <select
-              name="country"
-              className="w-full rounded-[12px] border border-black/[0.08] bg-fill px-3 py-2 text-[13px] outline-none focus:border-orange/50"
-              defaultValue="USA"
-            >
-              {SITE.markets.map((m) => (
-                <option key={m}>{m}</option>
-              ))}
-              <option>Other</option>
-            </select>
-          </label>
-          <Field label="Target role" name="role" placeholder="e.g. Cloud support, Salesforce admin" />
-          <label className="block">
-            <span className="mb-1 block text-[12px] font-medium text-secondary">Plan interest</span>
-            <select
-              name="plan"
-              defaultValue={plan || 'undecided'}
-              className="w-full rounded-[12px] border border-black/[0.08] bg-fill px-3 py-2 text-[13px] outline-none focus:border-orange/50"
-            >
-              <option value="undecided">Not sure yet</option>
-              <option value="silver">Silver — $65/mo</option>
-              <option value="gold">Gold — $300/mo</option>
-            </select>
-          </label>
-          <label className="block">
-            <span className="mb-1 block text-[12px] font-medium text-secondary">Notes</span>
-            <textarea
-              name="message"
-              rows={4}
-              className="w-full resize-y rounded-[12px] border border-black/[0.08] bg-fill px-3 py-2 text-[13px] outline-none focus:border-orange/50"
-              placeholder="Certifications, visa notes, or when you can start."
-            />
-          </label>
-          <Button type="submit" className="w-full">
-            Send
+          <HoneypotField />
+          <TextField label="Full name" name="name" required maxLength={FORM_LIMITS.name} autoComplete="name" />
+          <TextField
+            label="Email"
+            name="email"
+            type="email"
+            required
+            maxLength={FORM_LIMITS.email}
+            autoComplete="email"
+          />
+          <TextField
+            label="Phone / WhatsApp"
+            name="phone"
+            maxLength={FORM_LIMITS.phone}
+            autoComplete="tel"
+          />
+          <SelectField label="Country" name="country" defaultValue="USA">
+            {SITE.markets.map((m) => (
+              <option key={m}>{m}</option>
+            ))}
+            <option>Other</option>
+          </SelectField>
+          <TextField
+            label="Target role"
+            name="role"
+            placeholder="e.g. Cloud support, Salesforce admin"
+            maxLength={FORM_LIMITS.role}
+          />
+          <SelectField label="Plan interest" name="plan" defaultValue={plan || 'undecided'}>
+            <option value="undecided">Not sure yet</option>
+            <option value="silver">Silver — ${SILVER.price}/mo</option>
+            <option value="gold">Gold — ${GOLD.price}/mo</option>
+          </SelectField>
+          <TextAreaField
+            label="Notes"
+            name="message"
+            rows={4}
+            maxLength={FORM_LIMITS.message}
+            placeholder="Certifications, visa notes, or when you can start."
+          />
+          {status === 'error' ? (
+            <p className="text-[12.5px] text-[#c41e3a]" role="alert">
+              {error}{' '}
+              <a className="text-blue" href={`mailto:${SITE.email}`}>
+                {SITE.email}
+              </a>
+            </p>
+          ) : null}
+          <Button type="submit" className="w-full" disabled={status === 'sending'}>
+            {status === 'sending' ? 'Sending…' : 'Send'}
           </Button>
           <p className="text-center text-[11.5px] text-tertiary">
-            Or email <a className="text-blue" href={`mailto:${SITE.email}`}>{SITE.email}</a>
+            Or email{' '}
+            <a className="text-blue" href={`mailto:${SITE.email}`}>
+              {SITE.email}
+            </a>
           </p>
         </form>
       </section>
     </>
-  )
-}
-
-function Field({
-  label,
-  name,
-  type = 'text',
-  required,
-  placeholder,
-}: {
-  label: string
-  name: string
-  type?: string
-  required?: boolean
-  placeholder?: string
-}) {
-  return (
-    <label className="block">
-      <span className="mb-1 block text-[12px] font-medium text-secondary">{label}</span>
-      <input
-        name={name}
-        type={type}
-        required={required}
-        placeholder={placeholder}
-        className="w-full rounded-[12px] border border-black/[0.08] bg-fill px-3 py-2 text-[13px] outline-none focus:border-orange/50"
-      />
-    </label>
   )
 }

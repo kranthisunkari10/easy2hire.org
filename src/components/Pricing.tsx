@@ -1,29 +1,31 @@
 import { Link } from 'react-router-dom'
-import { GOLD, SILVER } from '../data/site'
-import { Button } from './Button'
-import { Reveal } from './Reveal'
+import { GOLD, PLANS, type Plan } from '../content/plans'
+import { ROUTES, getStartedPath } from '../config/routes'
+import { Button } from './ui/Button'
+import { Card } from './ui/Card'
+import { CheckIcon } from './ui/Logo'
+import { Reveal } from './ui/Reveal'
 import { cn } from '../lib/cn'
-
-type Plan = typeof GOLD | typeof SILVER
 
 export function Pricing({ compact = false }: { compact?: boolean }) {
   return (
     <div className="mx-auto grid max-w-[860px] gap-3 md:grid-cols-2">
-      <PlanCard plan={SILVER} delay={0.05} compact={compact} />
-      <PlanCard plan={GOLD} delay={0.12} compact={compact} />
+      {PLANS.map((plan, i) => (
+        <PlanCard key={plan.id} plan={plan} delay={0.05 + i * 0.07} compact={compact} />
+      ))}
     </div>
   )
 }
 
 function PlanCard({ plan, delay, compact }: { plan: Plan; delay: number; compact: boolean }) {
-  const popular = 'popular' in plan && plan.popular
+  const popular = plan.id === GOLD.id
   const features = compact ? plan.features.slice(0, 6) : plan.features
 
   return (
     <Reveal delay={delay}>
-      <article
+      <Card
         className={cn(
-          'relative h-full rounded-[20px] border bg-white p-5 card-shadow',
+          'relative h-full rounded-[20px] p-5',
           popular ? 'border-orange/40' : 'border-black/[0.05]',
         )}
       >
@@ -44,38 +46,22 @@ function PlanCard({ plan, delay, compact }: { plan: Plan; delay: number; compact
         <ul className="mt-3 space-y-1.5">
           {features.map((f) => (
             <li key={f} className="flex gap-2 text-[12.5px] text-secondary">
-              <Check />
+              <CheckIcon />
               <span>{f}</span>
             </li>
           ))}
         </ul>
         <div className="mt-4 flex items-center gap-2">
-          <Button to={`/get-started?plan=${plan.id}`} variant={popular ? 'primary' : 'dark'}>
+          <Button to={getStartedPath(plan.id)} variant={popular ? 'primary' : 'dark'}>
             Choose {plan.name}
           </Button>
           {compact ? (
-            <Link to="/services" className="text-[12.5px] font-medium text-blue">
+            <Link to={ROUTES.services} className="text-[12.5px] font-medium text-blue">
               Full details
             </Link>
           ) : null}
         </div>
-      </article>
+      </Card>
     </Reveal>
-  )
-}
-
-function Check() {
-  return (
-    <svg viewBox="0 0 16 16" className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden="true">
-      <circle cx="8" cy="8" r="8" fill="#ff7a1a" opacity="0.15" />
-      <path
-        d="M4.6 8.2 7 10.5l4.4-5"
-        fill="none"
-        stroke="#ff7a1a"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
   )
 }

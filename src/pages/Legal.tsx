@@ -1,4 +1,6 @@
-import { SITE } from '../data/site'
+import { Link } from 'react-router-dom'
+import { SITE } from '../config/site'
+import { ROUTES } from '../config/routes'
 import { Seo } from '../lib/seo'
 
 export function Privacy() {
@@ -50,9 +52,9 @@ export function NotFound() {
       <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-orange">404</p>
       <h1 className="mt-1 text-[22px] font-semibold tracking-[-0.03em]">Page not found</h1>
       <p className="mt-2 text-[13.5px] text-secondary">That link does not exist on Easy2Hire.</p>
-      <a href="/" className="mt-4 inline-block text-[13px] font-medium text-blue">
+      <Link to={ROUTES.home} className="mt-4 inline-block text-[13px] font-medium text-blue">
         Go home
-      </a>
+      </Link>
     </section>
   )
 }

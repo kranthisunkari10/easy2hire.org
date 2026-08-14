@@ -1,9 +1,13 @@
 import { motion } from 'framer-motion'
-import { CERTS, SITE, STEPS, STORIES, WHY } from '../data/site'
-import { Button } from '../components/Button'
+import { CERTS, STEPS, STORIES, WHY } from '../content/copy'
+import { SITE } from '../config/site'
+import { ROUTES } from '../config/routes'
+import { Button } from '../components/ui/Button'
+import { BrandCta } from '../components/ui/BrandCta'
+import { Card, Container } from '../components/ui/Card'
 import { DeviceMock } from '../components/DeviceMock'
 import { Pricing } from '../components/Pricing'
-import { Reveal, SectionHead } from '../components/Reveal'
+import { Reveal, SectionHead } from '../components/ui/Reveal'
 import { Seo } from '../lib/seo'
 
 export function Home() {
@@ -19,7 +23,13 @@ export function Home() {
       <ServicesBand />
       <How />
       <Stories />
-      <Cta />
+      <section className="py-12">
+        <Reveal>
+          <Container>
+            <BrandCta />
+          </Container>
+        </Reveal>
+      </section>
     </>
   )
 }
@@ -27,7 +37,7 @@ export function Home() {
 function Hero() {
   return (
     <section className="mesh overflow-hidden">
-      <div className="mx-auto grid max-w-[1080px] items-center gap-8 px-4 pb-10 pt-8 md:grid-cols-[1.05fr_0.95fr] md:gap-10 md:pb-14 md:pt-10">
+      <Container className="grid items-center gap-8 pb-10 pt-8 md:grid-cols-[1.05fr_0.95fr] md:gap-10 md:pb-14 md:pt-10">
         <div>
           <motion.p
             initial={{ opacity: 0, y: 8 }}
@@ -59,8 +69,8 @@ function Hero() {
             transition={{ delay: 0.18 }}
             className="mt-4 flex flex-wrap gap-2"
           >
-            <Button to="/get-started">Talk to our team</Button>
-            <Button to="/services" variant="ghost">
+            <Button to={ROUTES.getStarted}>Talk to our team</Button>
+            <Button to={ROUTES.services} variant="ghost">
               Explore services
             </Button>
           </motion.div>
@@ -82,7 +92,7 @@ function Hero() {
           </motion.ul>
         </div>
         <DeviceMock />
-      </div>
+      </Container>
     </section>
   )
 }
@@ -90,10 +100,8 @@ function Hero() {
 function Logos() {
   return (
     <section className="border-y border-black/[0.05] bg-white">
-      <div className="mx-auto flex max-w-[1080px] flex-wrap items-center justify-between gap-3 px-4 py-3">
-        <p className="text-[11.5px] text-tertiary">
-          Serving {SITE.markets.join(' · ')}
-        </p>
+      <Container className="flex flex-wrap items-center justify-between gap-3 py-3">
+        <p className="text-[11.5px] text-tertiary">Serving {SITE.markets.join(' · ')}</p>
         <div className="flex flex-wrap gap-1.5">
           {CERTS.map((c) => (
             <span
@@ -104,32 +112,34 @@ function Logos() {
             </span>
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   )
 }
 
 function Why() {
   return (
-    <section className="px-4 py-12">
-      <SectionHead
-        eyebrow="Why Easy2Hire"
-        title="Job hunting, kept simple and honest."
-        body="High-quality outcomes at student-friendly prices — with a portal that shows every move."
-      />
-      <div className="mx-auto mt-6 grid max-w-[1080px] gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
-        {WHY.map((item, i) => (
-          <Reveal key={item.title} delay={i * 0.04}>
-            <article className="h-full rounded-[16px] border border-black/[0.05] bg-white p-4 card-shadow">
-              <div className="mb-2 h-7 w-7 rounded-[8px] bg-orange/10 text-center text-[13px] leading-7 text-orange">
-                {String(i + 1).padStart(2, '0')}
-              </div>
-              <h3 className="text-[14px] font-semibold tracking-[-0.02em]">{item.title}</h3>
-              <p className="mt-1 text-[13px] leading-relaxed text-secondary">{item.body}</p>
-            </article>
-          </Reveal>
-        ))}
-      </div>
+    <section className="py-12">
+      <Container>
+        <SectionHead
+          eyebrow="Why Easy2Hire"
+          title="Job hunting, kept simple and honest."
+          body="High-quality outcomes at student-friendly prices — with a portal that shows every move."
+        />
+        <div className="mt-6 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
+          {WHY.map((item, i) => (
+            <Reveal key={item.title} delay={i * 0.04}>
+              <Card className="h-full">
+                <div className="mb-2 h-7 w-7 rounded-[8px] bg-orange/10 text-center text-[13px] leading-7 text-orange">
+                  {String(i + 1).padStart(2, '0')}
+                </div>
+                <h3 className="text-[14px] font-semibold tracking-[-0.02em]">{item.title}</h3>
+                <p className="mt-1 text-[13px] leading-relaxed text-secondary">{item.body}</p>
+              </Card>
+            </Reveal>
+          ))}
+        </div>
+      </Container>
     </section>
   )
 }
@@ -150,19 +160,21 @@ function ServicesBand() {
 
 function How() {
   return (
-    <section className="px-4 py-12">
-      <SectionHead eyebrow="How it works" title="A calm path from profile to offer." />
-      <div className="mx-auto mt-6 grid max-w-[1080px] gap-2.5 sm:grid-cols-2 lg:grid-cols-4">
-        {STEPS.map((s, i) => (
-          <Reveal key={s.n} delay={i * 0.05}>
-            <article className="h-full rounded-[16px] bg-white p-4 card-shadow">
-              <p className="text-[11px] font-semibold text-orange">{s.n}</p>
-              <h3 className="mt-1 text-[14px] font-semibold tracking-[-0.02em]">{s.title}</h3>
-              <p className="mt-1 text-[13px] leading-relaxed text-secondary">{s.body}</p>
-            </article>
-          </Reveal>
-        ))}
-      </div>
+    <section className="py-12">
+      <Container>
+        <SectionHead eyebrow="How it works" title="A calm path from profile to offer." />
+        <div className="mt-6 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-4">
+          {STEPS.map((s, i) => (
+            <Reveal key={s.n} delay={i * 0.05}>
+              <Card className="h-full">
+                <p className="text-[11px] font-semibold text-orange">{s.n}</p>
+                <h3 className="mt-1 text-[14px] font-semibold tracking-[-0.02em]">{s.title}</h3>
+                <p className="mt-1 text-[13px] leading-relaxed text-secondary">{s.body}</p>
+              </Card>
+            </Reveal>
+          ))}
+        </div>
+      </Container>
     </section>
   )
 }
@@ -171,10 +183,7 @@ function Stories() {
   return (
     <section className="overflow-hidden bg-white py-12">
       <div className="px-4">
-        <SectionHead
-          eyebrow="Success stories"
-          title="Real candidates. Clearer interviews."
-        />
+        <SectionHead eyebrow="Success stories" title="Real candidates. Clearer interviews." />
       </div>
       <div className="mt-6 flex gap-3 overflow-x-auto px-4 pb-2 [scrollbar-width:thin]">
         {STORIES.map((s, i) => (
@@ -189,34 +198,6 @@ function Stories() {
           </Reveal>
         ))}
       </div>
-    </section>
-  )
-}
-
-function Cta() {
-  return (
-    <section className="px-4 py-12">
-      <Reveal>
-        <div className="relative mx-auto max-w-[1080px] overflow-hidden rounded-[22px] bg-navy px-6 py-10 text-center text-white">
-          <div className="pointer-events-none absolute -right-10 -top-16 h-48 w-48 rounded-full bg-orange/25 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-20 -left-10 h-48 w-48 rounded-full bg-blue/20 blur-3xl" />
-          <p className="relative text-[11px] font-semibold uppercase tracking-[0.12em] text-orange">
-            Get hired
-          </p>
-          <h2 className="relative mt-1 text-[22px] font-semibold tracking-[-0.03em] md:text-[24px]">
-            You grow the skill. We open the door.
-          </h2>
-          <p className="relative mx-auto mt-2 max-w-[46ch] text-[13.5px] text-white/70">
-            Start Silver if you want control, or Gold if you want us to apply every day.
-          </p>
-          <div className="relative mt-4 flex flex-wrap justify-center gap-2">
-            <Button to="/get-started?plan=gold">Start Gold</Button>
-            <Button to="/get-started?plan=silver" variant="ghost" className="bg-white/10 text-white hover:bg-white/16">
-              Start Silver
-            </Button>
-          </div>
-        </div>
-      </Reveal>
     </section>
   )
 }

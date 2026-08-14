@@ -1,14 +1,16 @@
 import { motion } from 'framer-motion'
 import type { ReactNode } from 'react'
-import { cn } from '../lib/cn'
+import { cn } from '../../lib/cn'
 
-type Props = {
+export function Reveal({
+  children,
+  className,
+  delay = 0,
+}: {
   children: ReactNode
   className?: string
   delay?: number
-}
-
-export function Reveal({ children, className, delay = 0 }: Props) {
+}) {
   return (
     <motion.div
       className={cn(className)}
@@ -41,9 +43,15 @@ export function SectionHead({
       <h2 className="text-[22px] font-semibold tracking-[-0.03em] text-label md:text-[24px]">
         {title}
       </h2>
-      {body ? (
-        <p className="mt-2 text-[13.5px] leading-relaxed text-secondary">{body}</p>
-      ) : null}
+      {body ? <p className="mt-2 text-[13.5px] leading-relaxed text-secondary">{body}</p> : null}
     </div>
+  )
+}
+
+export function PageHero(props: { eyebrow?: string; title: string; body?: string }) {
+  return (
+    <section className="mesh px-4 py-10">
+      <SectionHead {...props} />
+    </section>
   )
 }

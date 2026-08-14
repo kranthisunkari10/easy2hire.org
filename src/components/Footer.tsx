@@ -1,46 +1,22 @@
 import { Link } from 'react-router-dom'
-import { SITE } from '../data/site'
-
-const cols = [
-  {
-    title: 'Product',
-    links: [
-      { to: '/services', label: 'Services' },
-      { to: '/how-it-works', label: 'How it works' },
-      { to: '/get-started', label: 'Get started' },
-    ],
-  },
-  {
-    title: 'Company',
-    links: [
-      { to: '/about', label: 'About' },
-      { to: '/contact', label: 'Contact' },
-    ],
-  },
-  {
-    title: 'Legal',
-    links: [
-      { to: '/privacy', label: 'Privacy' },
-      { to: '/terms', label: 'Terms' },
-    ],
-  },
-]
+import { SITE } from '../config/site'
+import { FOOTER, ROUTES } from '../config/routes'
+import { Logo } from './ui/Logo'
 
 export function Footer() {
   return (
     <footer className="border-t border-black/[0.06] bg-[#fbfbfd]">
       <div className="mx-auto grid max-w-[1080px] gap-8 px-4 py-10 sm:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div>
-          <Link to="/" className="inline-flex items-center gap-2">
-            <img src="/easy2hire.png" alt="" className="h-7 w-7 object-contain" />
-            <span className="text-[13px] font-semibold tracking-[-0.03em]">Easy2Hire</span>
+          <Link to={ROUTES.home} className="inline-flex">
+            <Logo />
           </Link>
           <p className="mt-2 max-w-[240px] text-[12.5px] leading-relaxed text-secondary">
             From skill to offer — resumes, applications, interviews, and certifications.
           </p>
           <p className="mt-3 text-[12px] text-tertiary">{SITE.markets.join(' · ')}</p>
         </div>
-        {cols.map((col) => (
+        {FOOTER.map((col) => (
           <div key={col.title}>
             <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-tertiary">
               {col.title}

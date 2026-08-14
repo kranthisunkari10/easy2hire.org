@@ -1,5 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Layout } from './components/Layout'
+import { ROUTES } from './config/routes'
+import { routerBasename } from './lib/urls'
 import { About } from './pages/About'
 import { Contact } from './pages/Contact'
 import { GetStarted } from './pages/GetStarted'
@@ -11,18 +13,18 @@ import { Thanks } from './pages/Thanks'
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={routerBasename()}>
       <Routes>
         <Route element={<Layout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/how-it-works" element={<HowItWorks />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/get-started" element={<GetStarted />} />
-          <Route path="/thanks" element={<Thanks />} />
-          <Route path="/privacy" element={<Privacy />} />
-          <Route path="/terms" element={<Terms />} />
+          <Route path={ROUTES.home} element={<Home />} />
+          <Route path={ROUTES.services} element={<Services />} />
+          <Route path={ROUTES.howItWorks} element={<HowItWorks />} />
+          <Route path={ROUTES.about} element={<About />} />
+          <Route path={ROUTES.contact} element={<Contact />} />
+          <Route path={ROUTES.getStarted} element={<GetStarted />} />
+          <Route path={ROUTES.thanks} element={<Thanks />} />
+          <Route path={ROUTES.privacy} element={<Privacy />} />
+          <Route path={ROUTES.terms} element={<Terms />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

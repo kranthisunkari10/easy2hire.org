@@ -1,8 +1,10 @@
 # Easy2Hire
 
-Marketing site for [easy2hire.org](https://easy2hire.org) — ATS resumes, managed IT applications, interview coaching, and certification guidance.
+Marketing site for Easy2Hire, published on GitHub Pages.
 
-Stack: Vite, React, TypeScript, Tailwind CSS, Framer Motion. Published with GitHub Pages.
+**Live:** https://kranthisunkari10.github.io/easy2hire.org/
+
+Stack: Vite, React, TypeScript, Tailwind CSS, Framer Motion.
 
 ## Local
 
@@ -11,14 +13,12 @@ npm install
 npm run dev
 ```
 
-## Custom domain
+## Conventions
 
-In your DNS for `easy2hire.org`:
+- Put copy in `src/content`, URLs and contact in `src/config`, shared UI in `src/components/ui`.
+- Public files go through `publicAsset()` so GitHub Pages base paths stay correct.
+- Do not commit `.env` files or secrets.
 
-1. Apex `A` records to GitHub Pages:
-   - `185.199.108.153`
-   - `185.199.109.153`
-   - `185.199.110.153`
-   - `185.199.111.153`
-2. `www` `CNAME` to `kranthisunkari10.github.io`
-3. In the repo: Settings → Pages → Custom domain `easy2hire.org` → enable HTTPS
+## Custom domain later
+
+When you own `easy2hire.org`, add a `public/CNAME` file, set Vite `base` to `/`, and point DNS A records at GitHub Pages.
