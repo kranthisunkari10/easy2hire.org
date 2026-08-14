@@ -4,10 +4,13 @@ import { cn } from '../../lib/cn'
 import { isHttpUrl } from '../../lib/urls'
 
 const variants = {
-  primary: 'bg-orange text-white shadow-[0_1px_2px_rgba(255,122,26,0.35)]',
-  dark: 'bg-label text-white',
-  ghost: 'bg-black/[0.06] text-label',
-  blue: 'bg-blue text-white',
+  primary:
+    'bg-orange text-white shadow-[0_1px_2px_rgba(255,122,26,0.35)] hover:bg-[#ff8a33] hover:shadow-[0_8px_18px_rgba(255,122,26,0.28)]',
+  dark: 'bg-label text-white hover:bg-[#2c2c2e]',
+  ghost: 'bg-black/[0.06] text-label hover:bg-black/[0.1]',
+  blue: 'bg-blue text-white hover:bg-[#0066d6]',
+  silver:
+    'bg-[#eef1f6] text-[#1d1d1f] border border-[#c9ced8] hover:bg-[#e2e6ee] hover:border-[#b4bac6]',
 } as const
 
 type Variant = keyof typeof variants
@@ -24,7 +27,7 @@ type Props = {
 }
 
 const baseClass =
-  'inline-flex items-center justify-center rounded-full px-3.5 py-[7px] text-[13px] font-medium tracking-[-0.01em] transition-transform duration-200 will-change-transform hover:scale-[1.03] active:scale-[0.98] disabled:pointer-events-none disabled:opacity-60'
+  'inline-flex items-center justify-center rounded-full px-3.5 py-2 text-[13px] font-medium tracking-[-0.01em] transition-all duration-200 will-change-transform hover:scale-[1.04] active:scale-[0.98] disabled:pointer-events-none disabled:opacity-60'
 
 export function Button({
   children,

@@ -50,7 +50,7 @@ function Hero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.06, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-2 max-w-[20ch] text-[28px] font-semibold leading-[1.15] tracking-[-0.035em] text-label md:text-[34px]"
+            className="mt-2 max-w-[20ch] text-[32px] font-semibold leading-[1.15] tracking-[-0.035em] text-label md:text-[40px]"
           >
             Build the skill. Land the role.
           </motion.h1>
@@ -58,7 +58,7 @@ function Hero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.12, duration: 0.55 }}
-            className="mt-3 max-w-[46ch] text-[14px] leading-relaxed text-secondary"
+            className="mt-3 max-w-[46ch] text-[15px] leading-relaxed text-secondary"
           >
             We tailor every resume, manage daily IT applications, and coach you through
             certifications so recruiters see the best version of your skills.

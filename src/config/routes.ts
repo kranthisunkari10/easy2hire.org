@@ -18,10 +18,11 @@ export function getStartedPath(plan?: string) {
 }
 
 export const NAV = [
-  { to: ROUTES.services, label: 'Services' },
-  { to: ROUTES.howItWorks, label: 'How it works' },
-  { to: ROUTES.about, label: 'About' },
-  { to: ROUTES.contact, label: 'Contact' },
+  { to: ROUTES.home, label: 'Home', end: true },
+  { to: ROUTES.services, label: 'Services', end: false },
+  { to: ROUTES.howItWorks, label: 'How it works', end: false },
+  { to: ROUTES.about, label: 'About', end: false },
+  { to: ROUTES.contact, label: 'Contact', end: false },
 ] as const
 
 export const FOOTER = [

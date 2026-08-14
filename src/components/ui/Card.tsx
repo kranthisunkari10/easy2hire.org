@@ -21,7 +21,7 @@ export function Card({
   className?: string
 }) {
   return (
-    <div className={cn('rounded-[16px] border border-black/[0.05] bg-white p-4 card-shadow', className)}>
+    <div className={cn('rounded-[16px] border border-black/[0.05] bg-white p-4 card-shadow transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(15,23,42,0.1)]', className)}>
       {children}
     </div>
   )

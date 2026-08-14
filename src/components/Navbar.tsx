@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { NAV, ROUTES } from '../config/routes'
@@ -8,29 +8,37 @@ import { cn } from '../lib/cn'
 
 export function Navbar() {
   const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 6)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
     <header className="sticky top-0 z-50">
-      <div className="glass border-b border-black/[0.06]">
-        <div className="mx-auto flex h-11 max-w-[1080px] items-center justify-between px-4">
-          <Link to={ROUTES.home} className="flex items-center" onClick={() => setOpen(false)}>
-            <Logo />
+      <div className={cn('header-bar', scrolled && 'is-scrolled')}>
+        <div className="mx-auto flex h-14 max-w-[1080px] items-center justify-between px-4 md:h-16">
+          <Link
+            to={ROUTES.home}
+            className="flex items-center transition-transform duration-200 hover:scale-[1.03]"
+            onClick={() => setOpen(false)}
+          >
+            <Logo size={34} />
           </Link>
 
-          <nav className="hidden items-center gap-0.5 md:flex" aria-label="Primary">
+          <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
             {NAV.map((item) => (
-              <NavLink
+              <HeaderLink
                 key={item.to}
                 to={item.to}
-                className={({ isActive }) =>
-                  cn(
-                    'rounded-full px-2.5 py-1 text-[12.5px] text-secondary transition-colors hover:text-label',
-                    isActive && 'bg-black/[0.05] text-label',
-                  )
-                }
+                end={item.end}
+                onClick={() => setOpen(false)}
               >
                 {item.label}
-              </NavLink>
+              </HeaderLink>
             ))}
           </nav>
 
@@ -40,7 +48,7 @@ export function Navbar() {
             </Button>
             <button
               type="button"
-              className="flex h-8 w-8 items-center justify-center rounded-full bg-black/[0.05] md:hidden"
+              className="flex h-9 w-9 items-center justify-center rounded-full bg-black/[0.05] transition-colors hover:bg-orange/15 md:hidden"
               aria-label={open ? 'Close menu' : 'Open menu'}
               aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
@@ -73,22 +81,23 @@ export function Navbar() {
       <AnimatePresence>
         {open ? (
           <motion.div
-            initial={{ opacity: 0, y: -6 }}
+            initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
+            exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="glass border-b border-black/[0.06] md:hidden"
+            className="border-b border-black/[0.08] bg-white md:hidden"
           >
-            <nav className="mx-auto flex max-w-[1080px] flex-col gap-0.5 px-4 py-3" aria-label="Mobile">
+            <nav className="mx-auto flex max-w-[1080px] flex-col gap-1 px-4 py-3" aria-label="Mobile">
               {NAV.map((item) => (
-                <NavLink
+                <HeaderLink
                   key={item.to}
                   to={item.to}
+                  end={item.end}
                   onClick={() => setOpen(false)}
-                  className="rounded-lg px-2 py-2 text-[14px] text-label"
+                  stacked
                 >
                   {item.label}
-                </NavLink>
+                </HeaderLink>
               ))}
               <Button to={ROUTES.getStarted} className="mt-1 w-full" onClick={() => setOpen(false)}>
                 Get started
@@ -98,5 +107,37 @@ export function Navbar() {
         ) : null}
       </AnimatePresence>
     </header>
+  )
+}
+
+function HeaderLink({
+  to,
+  end,
+  onClick,
+  stacked,
+  children,
+}: {
+  to: string
+  end?: boolean
+  onClick?: () => void
+  stacked?: boolean
+  children: string
+}) {
+  return (
+    <NavLink
+      to={to}
+      end={end}
+      onClick={onClick}
+      className={({ isActive }) =>
+        cn(
+          'nav-link rounded-full px-3 py-1.5 text-[13.5px] font-medium text-secondary transition-all duration-200',
+          stacked && 'px-3 py-2.5',
+          !isActive && 'hover:bg-orange/10 hover:text-orange',
+          isActive && 'is-active bg-orange text-white shadow-[0_4px_14px_rgba(255,122,26,0.28)]',
+        )
+      }
+    >
+      {children}
+    </NavLink>
   )
 }

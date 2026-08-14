@@ -14,6 +14,8 @@
   --color-blue: #007aff;
   --color-orange: #ff7a1a;
   --color-navy: #1c2430;
+  --color-silver: #eef0f4;
+  --color-silver-ink: #1d1d1f;
 }
 
 html,
@@ -65,9 +67,67 @@ textarea {
 }
 
 .glass {
-  background: rgba(255, 255, 255, 0.72);
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  background: #ffffff;
+}
+
+.header-bar {
+  background: #ffffff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  transition:
+    box-shadow 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.header-bar.is-scrolled {
+  box-shadow: 0 8px 28px rgba(15, 23, 42, 0.08);
+}
+
+.cta-aurora {
+  background: linear-gradient(120deg, #155eef 0%, #14b8a6 46%, #7c3aed 100%);
+  background-size: 180% 180%;
+  animation: aurora-shift 12s ease-in-out infinite;
+}
+
+.plan-silver {
+  background: linear-gradient(180deg, #f7f8fb 0%, #eef1f6 100%);
+  border-color: #d5dae3;
+  color: #1d1d1f;
+}
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 4px;
+  height: 2px;
+  border-radius: 99px;
+  background: #ff7a1a;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.22s ease;
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+.nav-link.is-active::after {
+  display: none;
+}
+
+@keyframes aurora-shift {
+  0%,
+  100% {
+    background-position: 0% 45%;
+  }
+  50% {
+    background-position: 100% 55%;
+  }
 }
 
 .card-shadow {

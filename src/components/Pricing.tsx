@@ -25,8 +25,8 @@ function PlanCard({ plan, delay, compact }: { plan: Plan; delay: number; compact
     <Reveal delay={delay}>
       <Card
         className={cn(
-          'relative h-full rounded-[20px] p-5',
-          popular ? 'border-orange/40' : 'border-black/[0.05]',
+          'relative h-full rounded-[20px] p-5 text-label',
+          popular ? 'border-orange/40' : 'plan-silver',
         )}
       >
         {popular ? (
@@ -34,25 +34,25 @@ function PlanCard({ plan, delay, compact }: { plan: Plan; delay: number; compact
             Most popular
           </span>
         ) : null}
-        <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-secondary">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#5c6370]">
           {plan.eyebrow}
         </p>
-        <h3 className="mt-1 text-[18px] font-semibold tracking-[-0.03em]">{plan.name}</h3>
-        <p className="mt-1 text-[13px] leading-relaxed text-secondary">{plan.blurb}</p>
+        <h3 className="mt-1 text-[20px] font-semibold tracking-[-0.03em] text-label">{plan.name}</h3>
+        <p className="mt-1 text-[13px] leading-relaxed text-[#3a3f4b]">{plan.blurb}</p>
         <p className="mt-3 flex items-baseline gap-1">
           <span className="text-[28px] font-semibold tracking-[-0.04em]">${plan.price}</span>
           <span className="text-[12px] text-tertiary">/ month</span>
         </p>
         <ul className="mt-3 space-y-1.5">
           {features.map((f) => (
-            <li key={f} className="flex gap-2 text-[12.5px] text-secondary">
+            <li key={f} className="flex gap-2 text-[12.5px] text-[#3a3f4b]">
               <CheckIcon />
               <span>{f}</span>
             </li>
           ))}
         </ul>
         <div className="mt-4 flex items-center gap-2">
-          <Button to={getStartedPath(plan.id)} variant={popular ? 'primary' : 'dark'}>
+          <Button to={getStartedPath(plan.id)} variant={popular ? 'primary' : 'silver'}>
             Choose {plan.name}
           </Button>
           {compact ? (

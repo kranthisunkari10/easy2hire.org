@@ -17,6 +17,7 @@ export function Reveal({
       initial={{ opacity: 0, y: 14 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-48px' }}
+      whileHover={{ y: -2 }}
       transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
@@ -40,7 +41,7 @@ export function SectionHead({
           {eyebrow}
         </p>
       ) : null}
-      <h2 className="text-[22px] font-semibold tracking-[-0.03em] text-label md:text-[24px]">
+      <h2 className="text-[26px] font-semibold tracking-[-0.03em] text-label md:text-[30px]">
         {title}
       </h2>
       {body ? <p className="mt-2 text-[13.5px] leading-relaxed text-secondary">{body}</p> : null}
@@ -50,7 +51,7 @@ export function SectionHead({
 
 export function PageHero(props: { eyebrow?: string; title: string; body?: string }) {
   return (
-    <section className="mesh px-4 py-10">
+    <section className="mesh px-4 py-12">
       <SectionHead {...props} />
     </section>
   )

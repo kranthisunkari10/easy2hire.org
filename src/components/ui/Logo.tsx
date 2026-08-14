@@ -20,7 +20,7 @@ export function Logo({
         className="object-contain"
       />
       {withWordmark ? (
-        <span className="text-[13px] font-semibold tracking-[-0.03em] text-label">Easy2Hire</span>
+        <span className="text-[15px] font-semibold tracking-[-0.03em] text-label">Easy2Hire</span>
       ) : null}
     </span>
   )
