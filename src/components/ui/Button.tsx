@@ -11,6 +11,8 @@ const variants = {
   blue: 'bg-blue text-white hover:bg-[#0066d6]',
   silver:
     'bg-[#eef1f6] text-[#1d1d1f] border border-[#c9ced8] hover:bg-[#e2e6ee] hover:border-[#b4bac6]',
+  inverse:
+    'bg-white text-[#1c2430] shadow-[0_2px_10px_rgba(0,0,0,0.14)] hover:bg-[#f3f4f6]',
 } as const
 
 type Variant = keyof typeof variants

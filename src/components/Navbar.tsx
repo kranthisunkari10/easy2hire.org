@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
-import { AnimatePresence, motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
+import { AnimatePresence } from 'framer-motion'
 import { NAV, ROUTES } from '../config/routes'
+import { getLenis } from '../hooks/useLenis'
 import { Button } from './ui/Button'
 import { Logo } from './ui/Logo'
+import { MobileMenu } from './MobileMenu'
+import { HeaderLink } from './HeaderLink'
 import { cn } from '../lib/cn'
 
 export function Navbar() {
@@ -16,6 +19,21 @@ export function Navbar() {
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  useEffect(() => {
+    const lenis = getLenis()
+    if (open) {
+      document.body.style.overflow = 'hidden'
+      lenis?.stop()
+    } else {
+      document.body.style.overflow = ''
+      lenis?.start()
+    }
+    return () => {
+      document.body.style.overflow = ''
+      lenis?.start()
+    }
+  }, [open])
 
   return (
     <header className="sticky top-0 z-50">
@@ -31,12 +49,7 @@ export function Navbar() {
 
           <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
             {NAV.map((item) => (
-              <HeaderLink
-                key={item.to}
-                to={item.to}
-                end={item.end}
-                onClick={() => setOpen(false)}
-              >
+              <HeaderLink key={item.to} to={item.to} end={item.end}>
                 {item.label}
               </HeaderLink>
             ))}
@@ -48,28 +61,28 @@ export function Navbar() {
             </Button>
             <button
               type="button"
-              className="flex h-9 w-9 items-center justify-center rounded-full bg-black/[0.05] transition-colors hover:bg-orange/15 md:hidden"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-fill md:hidden"
               aria-label={open ? 'Close menu' : 'Open menu'}
               aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
             >
-              <span className="relative block h-3 w-3.5">
+              <span className="relative block h-3 w-[18px]">
                 <span
                   className={cn(
-                    'absolute left-0 block h-px w-full bg-label transition-transform',
-                    open ? 'top-1.5 rotate-45' : 'top-0.5',
+                    'absolute left-0 block h-[1.5px] w-full bg-label transition-transform',
+                    open ? 'top-[5px] rotate-45' : 'top-0.5',
                   )}
                 />
                 <span
                   className={cn(
-                    'absolute left-0 top-1.5 block h-px w-full bg-label transition-opacity',
+                    'absolute left-0 top-[5px] block h-[1.5px] w-full bg-label transition-opacity',
                     open && 'opacity-0',
                   )}
                 />
                 <span
                   className={cn(
-                    'absolute left-0 block h-px w-full bg-label transition-transform',
-                    open ? 'top-1.5 -rotate-45' : 'top-2.5',
+                    'absolute left-0 block h-[1.5px] w-full bg-label transition-transform',
+                    open ? 'top-[5px] -rotate-45' : 'top-[9px]',
                   )}
                 />
               </span>
@@ -78,66 +91,7 @@ export function Navbar() {
         </div>
       </div>
 
-      <AnimatePresence>
-        {open ? (
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
-            className="border-b border-black/[0.08] bg-white md:hidden"
-          >
-            <nav className="mx-auto flex max-w-[1080px] flex-col gap-1 px-4 py-3" aria-label="Mobile">
-              {NAV.map((item) => (
-                <HeaderLink
-                  key={item.to}
-                  to={item.to}
-                  end={item.end}
-                  onClick={() => setOpen(false)}
-                  stacked
-                >
-                  {item.label}
-                </HeaderLink>
-              ))}
-              <Button to={ROUTES.getStarted} className="mt-1 w-full" onClick={() => setOpen(false)}>
-                Get started
-              </Button>
-            </nav>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
+      <AnimatePresence>{open ? <MobileMenu onClose={() => setOpen(false)} /> : null}</AnimatePresence>
     </header>
-  )
-}
-
-function HeaderLink({
-  to,
-  end,
-  onClick,
-  stacked,
-  children,
-}: {
-  to: string
-  end?: boolean
-  onClick?: () => void
-  stacked?: boolean
-  children: string
-}) {
-  return (
-    <NavLink
-      to={to}
-      end={end}
-      onClick={onClick}
-      className={({ isActive }) =>
-        cn(
-          'nav-link rounded-full px-3 py-1.5 text-[13.5px] font-medium text-secondary transition-all duration-200',
-          stacked && 'px-3 py-2.5',
-          !isActive && 'hover:bg-orange/10 hover:text-orange',
-          isActive && 'is-active bg-orange text-white shadow-[0_4px_14px_rgba(255,122,26,0.28)]',
-        )
-      }
-    >
-      {children}
-    </NavLink>
   )
 }
