@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import { NAV, ROUTES } from '../config/routes'
-import { getLenis } from '../hooks/useLenis'
+import { getLenis, scrollToTop } from '../hooks/useLenis'
 import { Button } from './ui/Button'
 import { Logo } from './ui/Logo'
 import { MobileMenu } from './MobileMenu'
@@ -42,7 +42,10 @@ export function Navbar() {
           <Link
             to={ROUTES.home}
             className="flex items-center transition-transform duration-200 hover:scale-[1.03]"
-            onClick={() => setOpen(false)}
+            onClick={() => {
+              setOpen(false)
+              scrollToTop()
+            }}
           >
             <Logo size={34} />
           </Link>

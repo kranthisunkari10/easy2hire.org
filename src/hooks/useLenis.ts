@@ -7,6 +7,15 @@ export function getLenis() {
   return client
 }
 
+export function scrollToTop(smooth = true) {
+  const lenis = getLenis()
+  if (lenis) {
+    lenis.scrollTo(0, { immediate: !smooth })
+    return
+  }
+  window.scrollTo({ top: 0, behavior: smooth ? 'smooth' : 'auto' })
+}
+
 export function useLenis() {
   useEffect(() => {
     const lenis = new Lenis({

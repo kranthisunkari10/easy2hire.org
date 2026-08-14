@@ -1,4 +1,6 @@
 import { NavLink } from 'react-router-dom'
+import { ROUTES } from '../config/routes'
+import { scrollToTop } from '../hooks/useLenis'
 import { cn } from '../lib/cn'
 
 export function HeaderLink({
@@ -14,6 +16,9 @@ export function HeaderLink({
     <NavLink
       to={to}
       end={end}
+      onClick={() => {
+        if (to === ROUTES.home) scrollToTop()
+      }}
       className={({ isActive }) =>
         cn(
           'nav-link rounded-full px-3 py-1.5 text-[13.5px] font-medium text-secondary transition-all duration-200',

@@ -1,6 +1,7 @@
 import { Link, NavLink } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { NAV, ROUTES } from '../config/routes'
+import { scrollToTop } from '../hooks/useLenis'
 import { Button } from './ui/Button'
 import { Logo } from './ui/Logo'
 import { cn } from '../lib/cn'
@@ -15,7 +16,14 @@ export function MobileMenu({ onClose }: { onClose: () => void }) {
       transition={{ duration: 0.2 }}
     >
       <div className="flex h-14 items-center justify-between border-b border-black/[0.08] px-4">
-        <Link to={ROUTES.home} onClick={onClose} className="flex items-center">
+        <Link
+          to={ROUTES.home}
+          onClick={() => {
+            onClose()
+            scrollToTop()
+          }}
+          className="flex items-center"
+        >
           <Logo size={32} />
         </Link>
         <button
@@ -52,7 +60,10 @@ export function MobileMenu({ onClose }: { onClose: () => void }) {
             <NavLink
               to={item.to}
               end={item.end}
-              onClick={onClose}
+              onClick={() => {
+                onClose()
+                if (item.to === ROUTES.home) scrollToTop()
+              }}
               className={({ isActive }) =>
                 cn(
                   'flex items-center justify-between border-b border-black/[0.06] py-3.5 text-[17px] font-semibold tracking-[-0.03em]',

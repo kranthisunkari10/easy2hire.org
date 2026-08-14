@@ -12,8 +12,6 @@ const CSP = [
   "form-action 'self' https://formsubmit.co mailto:",
   "base-uri 'self'",
   "object-src 'none'",
-  "frame-ancestors 'none'",
-  'upgrade-insecure-requests',
 ].join('; ')
 
 function htmlSecurity() {

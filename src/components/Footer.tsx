@@ -2,13 +2,14 @@ import { Link } from 'react-router-dom'
 import { SITE } from '../config/site'
 import { FOOTER, ROUTES } from '../config/routes'
 import { Logo } from './ui/Logo'
+import { scrollToTop } from '../hooks/useLenis'
 
 export function Footer() {
   return (
     <footer className="border-t border-black/[0.06] bg-[#fbfbfd]">
       <div className="mx-auto grid max-w-[1080px] gap-8 px-4 py-10 sm:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div>
-          <Link to={ROUTES.home} className="inline-flex">
+          <Link to={ROUTES.home} className="inline-flex" onClick={() => scrollToTop()}>
             <Logo />
           </Link>
           <p className="mt-2 max-w-[240px] text-[12.5px] leading-relaxed text-secondary">
