@@ -1,4 +1,4 @@
-# Easy2Hire
+# TalentBridge
 
 Marketing site for Easy2Hire, published on GitHub Pages.
 
