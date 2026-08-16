@@ -3,12 +3,9 @@ const DEFAULT_ORIGIN = 'https://kranthisunkari10.github.io/talentbridge'
 export const SITE = {
   name: 'TalentBridge',
   url: (import.meta.env.VITE_SITE_URL as string | undefined)?.replace(/\/$/, '') || DEFAULT_ORIGIN,
-  email: 'kranhisunkari10@gmail.com',
-  formEndpoint: 'https://formsubmit.co/ajax/kranhisunkari10@gmail.com',
-  phoneDisplay: '+91 77 93 93 33 93',
-  phoneTel: '+917793933393',
-  whatsapp: '917793933393',
-  address: 'Hyderabad, Telangana, India',
+  email: 'info@talentbridge.org',
+  formEndpoint: 'https://formsubmit.co/ajax/info@talentbridge.org',
+  address: '500 W 2nd Street, Austin, TX 78701',
   markets: ['USA'] as const,
 } as const
 

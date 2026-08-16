@@ -10,7 +10,7 @@ export function Thanks() {
       <PageHero
         eyebrow="Received"
         title="Thanks — we have your note."
-        body="A specialist will follow up by email. If it is urgent, message us on WhatsApp from the contact page."
+        body="A specialist will follow up by email."
       />
       <div className="flex justify-center py-12">
         <Button to={ROUTES.home}>

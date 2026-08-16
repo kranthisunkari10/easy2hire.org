@@ -3,22 +3,20 @@ import { ROUTES } from '../config/routes'
 import { Button } from '../components/ui/Button'
 import { PageHero, Reveal } from '../components/ui/Reveal'
 import { Seo } from '../lib/seo'
-import { whatsappHref } from '../lib/urls'
 
 export function Contact() {
-  const wa = whatsappHref('Hi TalentBridge — I would like to know more about your plans.')
   return (
     <>
       <Seo
         title="Contact — TalentBridge"
-        description="Email, WhatsApp, or send a note. We help IT candidates in the USA."
+        description="Email us or send a note. We help IT candidates in the USA."
       />
       <PageHero
         eyebrow="Contact"
         title="Reach the studio when you are ready."
         body="Questions about Silver, Gold, or a custom timeline — write us directly."
       />
-      <section className="mx-auto grid max-w-[900px] gap-4 px-4 py-14 md:grid-cols-3">
+      <section className="mx-auto grid max-w-[720px] gap-4 px-4 py-14 md:grid-cols-2">
         <Reveal>
           <a href={`mailto:${SITE.email}`} className="block h-full">
             <article className="h-full rounded-[16px] bg-white p-5 card-shadow">
@@ -31,27 +29,12 @@ export function Contact() {
           </a>
         </Reveal>
         <Reveal delay={0.05}>
-          <a href={wa} target="_blank" rel="noopener noreferrer" className="block h-full">
-            <article className="h-full rounded-[16px] bg-white p-5 card-shadow">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-gold-deep">
-                WhatsApp
-              </p>
-              <p className="mt-3 text-[16px] font-semibold tracking-[-0.02em] text-label">
-                {SITE.phoneDisplay}
-              </p>
-              <p className="mt-2 text-[13.5px] text-secondary">Message the team for a quick fit check.</p>
-            </article>
-          </a>
-        </Reveal>
-        <Reveal delay={0.1}>
           <article className="h-full rounded-[16px] bg-white p-5 card-shadow">
             <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-gold-deep">
-              Market
+              Address
             </p>
-            <p className="mt-3 text-[16px] font-semibold tracking-[-0.02em] text-label">
-              {SITE.markets[0]}
-            </p>
-            <p className="mt-2 text-[13.5px] text-secondary">{SITE.address}</p>
+            <p className="mt-3 text-[16px] font-semibold tracking-[-0.02em] text-label">{SITE.address}</p>
+            <p className="mt-2 text-[13.5px] text-secondary">Serving {SITE.markets[0]}</p>
           </article>
         </Reveal>
       </section>

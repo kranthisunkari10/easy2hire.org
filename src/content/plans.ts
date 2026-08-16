@@ -14,7 +14,7 @@ export const SILVER: Plan = {
   id: 'silver',
   name: 'Silver',
   eyebrow: 'You apply · we prepare',
-  price: 65,
+  price: 50,
   blurb:
     'Get a job-specific, ATS-ready resume for every posting — then send applications on your own schedule.',
   features: [
@@ -33,7 +33,7 @@ export const GOLD: Plan = {
   id: 'gold',
   name: 'Gold',
   eyebrow: 'We apply for you',
-  price: 300,
+  price: 200,
   popular: true,
   blurb:
     'Specialists run daily outreach while you study, certify, and interview. Wide coverage without the grind.',

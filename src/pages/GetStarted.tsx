@@ -71,7 +71,7 @@ export function GetStarted() {
             autoComplete="email"
           />
           <TextField
-            label="Phone / WhatsApp"
+            label="Phone"
             name="phone"
             maxLength={FORM_LIMITS.phone}
             autoComplete="tel"
