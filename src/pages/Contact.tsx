@@ -1,70 +1,61 @@
 import { SITE } from '../config/site'
 import { ROUTES } from '../config/routes'
 import { Button } from '../components/ui/Button'
-import { Card } from '../components/ui/Card'
 import { PageHero, Reveal } from '../components/ui/Reveal'
 import { Seo } from '../lib/seo'
 import { whatsappHref } from '../lib/urls'
 
 export function Contact() {
-  const wa = whatsappHref('Hi Easy2Hire — I would like to know more about your plans.')
+  const wa = whatsappHref('Hi TalentBridge — I would like to know more about your plans.')
   return (
     <>
       <Seo
-        title="Contact — Easy2Hire"
-        description="Email, WhatsApp, or send a note. We help IT candidates across the USA, Canada, Australia, and New Zealand."
+        title="Contact — TalentBridge"
+        description="Email, WhatsApp, or send a note. We help IT candidates in the USA."
       />
       <PageHero
         eyebrow="Contact"
-        title="We are here when you are ready."
-        body="Questions about Silver, Gold, or a custom timeline — reach us directly."
+        title="Reach the studio when you are ready."
+        body="Questions about Silver, Gold, or a custom timeline — write us directly."
       />
-      <section className="mx-auto grid max-w-[860px] gap-3 px-4 pb-12 md:grid-cols-3">
+      <section className="mx-auto grid max-w-[900px] gap-4 px-4 py-14 md:grid-cols-3">
         <Reveal>
-          <a
-            href={`mailto:${SITE.email}`}
-            className="block h-full transition-transform hover:scale-[1.01]"
-          >
-            <Card className="h-full rounded-[18px] p-5">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-tertiary">
+          <a href={`mailto:${SITE.email}`} className="block h-full">
+            <article className="h-full rounded-[16px] bg-white p-5 card-shadow">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-gold-deep">
                 Email
               </p>
-              <p className="mt-2 text-[14px] font-semibold tracking-[-0.02em]">{SITE.email}</p>
-              <p className="mt-1 text-[12.5px] text-secondary">We reply within one business day.</p>
-            </Card>
+              <p className="mt-3 text-[16px] font-semibold tracking-[-0.02em] text-label">{SITE.email}</p>
+              <p className="mt-2 text-[13.5px] text-secondary">We reply within one business day.</p>
+            </article>
           </a>
         </Reveal>
         <Reveal delay={0.05}>
-          <a
-            href={wa}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block h-full transition-transform hover:scale-[1.01]"
-          >
-            <Card className="h-full rounded-[18px] p-5">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-tertiary">
+          <a href={wa} target="_blank" rel="noopener noreferrer" className="block h-full">
+            <article className="h-full rounded-[16px] bg-white p-5 card-shadow">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-gold-deep">
                 WhatsApp
               </p>
-              <p className="mt-2 text-[14px] font-semibold tracking-[-0.02em]">{SITE.phoneDisplay}</p>
-              <p className="mt-1 text-[12.5px] text-secondary">
-                Message the team for a quick fit check.
+              <p className="mt-3 text-[16px] font-semibold tracking-[-0.02em] text-label">
+                {SITE.phoneDisplay}
               </p>
-            </Card>
+              <p className="mt-2 text-[13.5px] text-secondary">Message the team for a quick fit check.</p>
+            </article>
           </a>
         </Reveal>
         <Reveal delay={0.1}>
-          <Card className="h-full rounded-[18px] p-5">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-tertiary">
-              Markets
+          <article className="h-full rounded-[16px] bg-white p-5 card-shadow">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-gold-deep">
+              Market
             </p>
-            <p className="mt-2 text-[14px] font-semibold tracking-[-0.02em]">
-              {SITE.markets.join(' · ')}
+            <p className="mt-3 text-[16px] font-semibold tracking-[-0.02em] text-label">
+              {SITE.markets[0]}
             </p>
-            <p className="mt-1 text-[12.5px] text-secondary">{SITE.address}</p>
-          </Card>
+            <p className="mt-2 text-[13.5px] text-secondary">{SITE.address}</p>
+          </article>
         </Reveal>
       </section>
-      <section className="px-4 pb-12 text-center">
+      <section className="px-4 pb-16 text-center">
         <Button to={ROUTES.getStarted}>Start an application</Button>
       </section>
     </>

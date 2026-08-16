@@ -3,19 +3,27 @@
 
 @theme {
   --font-sans:
-    'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI',
-    system-ui, sans-serif;
-  --color-label: #1d1d1f;
-  --color-secondary: #6e6e73;
-  --color-tertiary: #86868b;
-  --color-fill: #f5f5f7;
+    -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui,
+    sans-serif;
+  --font-display:
+    -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', system-ui,
+    sans-serif;
+  --color-label: #1c1c1e;
+  --color-secondary: #636366;
+  --color-tertiary: #8e8e93;
+  --color-fill: #f2f2f7;
   --color-elevated: #ffffff;
-  --color-line: #d2d2d7;
+  --color-line: #d1d1d6;
   --color-blue: #007aff;
-  --color-orange: #ff7a1a;
-  --color-navy: #1c2430;
-  --color-silver: #eef0f4;
-  --color-silver-ink: #1d1d1f;
+  --color-blue-deep: #0066d6;
+  --color-navy: #1c3a5f;
+  --color-navy-deep: #16314f;
+  --color-gold: #c9a227;
+  --color-gold-deep: #a8861c;
+  --color-paper: #f2f2f7;
+  --color-cream: #ffffff;
+  --color-silver: #f2f2f7;
+  --color-silver-ink: #1c1c1e;
 }
 
 html,
@@ -30,11 +38,11 @@ html {
 
 body {
   margin: 0;
-  background: #f5f5f7;
-  color: #1d1d1f;
+  background: #f2f2f7;
+  color: #1c1c1e;
   font-family: var(--font-sans);
-  font-size: 14px;
-  line-height: 1.47;
+  font-size: 15px;
+  line-height: 1.5;
   letter-spacing: -0.01em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -42,8 +50,8 @@ body {
 }
 
 ::selection {
-  background: rgba(255, 122, 26, 0.18);
-  color: #1d1d1f;
+  background: rgba(0, 122, 255, 0.18);
+  color: #1c1c1e;
 }
 
 a {
@@ -58,55 +66,39 @@ textarea {
   font: inherit;
 }
 
-.mesh {
+.hero-bridge {
   background:
-    radial-gradient(ellipse 50% 40% at 20% 0%, rgba(255, 122, 26, 0.16), transparent 55%),
-    radial-gradient(ellipse 40% 35% at 88% 8%, rgba(0, 122, 255, 0.12), transparent 50%),
-    radial-gradient(ellipse 35% 30% at 70% 100%, rgba(28, 36, 48, 0.06), transparent 55%),
-    #f5f5f7;
-}
-
-.glass {
-  background: #ffffff;
+    radial-gradient(ellipse 60% 50% at 88% 0%, rgba(201, 162, 39, 0.18), transparent 55%),
+    radial-gradient(ellipse 50% 45% at 8% 100%, rgba(0, 122, 255, 0.14), transparent 50%),
+    #ffffff;
 }
 
 .header-bar {
-  background: #ffffff;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-  transition:
-    box-shadow 0.25s ease,
-    background-color 0.25s ease;
+  background: rgba(255, 255, 255, 0.86);
+  border-bottom: 1px solid rgba(209, 209, 214, 0.9);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  transition: box-shadow 0.25s ease;
 }
 
 .header-bar.is-scrolled {
-  box-shadow: 0 8px 28px rgba(15, 23, 42, 0.08);
-}
-
-.cta-aurora {
-  background: linear-gradient(120deg, #155eef 0%, #14b8a6 46%, #7c3aed 100%);
-  background-size: 180% 180%;
-  animation: aurora-shift 12s ease-in-out infinite;
-}
-
-.plan-silver {
-  background: linear-gradient(180deg, #f7f8fb 0%, #eef1f6 100%);
-  border-color: #d5dae3;
-  color: #1d1d1f;
+  box-shadow: 0 8px 24px rgba(28, 28, 30, 0.06);
 }
 
 .nav-link {
   position: relative;
+  color: #1c1c1e;
 }
 
 .nav-link::after {
   content: '';
   position: absolute;
-  left: 12px;
-  right: 12px;
-  bottom: 4px;
+  left: 10px;
+  right: 10px;
+  bottom: 3px;
   height: 2px;
   border-radius: 99px;
-  background: #ff7a1a;
+  background: #c9a227;
   transform: scaleX(0);
   transform-origin: center;
   transition: transform 0.22s ease;
@@ -120,36 +112,35 @@ textarea {
   display: none;
 }
 
-.btn-on-color {
+.plan-silver {
   background: #ffffff;
-  color: #1c2430;
-  border: 0;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.14);
+  border-color: #d1d1d6;
+  color: #1c1c1e;
 }
 
-.btn-on-color:hover {
-  background: #f3f4f6;
-  color: #1c2430;
+.plan-gold {
+  background: linear-gradient(180deg, #fff8e6 0%, #ffffff 100%);
+  border-color: #c9a227;
+  color: #1c1c1e;
 }
 
-@keyframes aurora-shift {
-  0%,
-  100% {
-    background-position: 0% 45%;
-  }
-  50% {
-    background-position: 100% 55%;
-  }
+.cta-panel {
+  background: #007aff;
 }
 
 .card-shadow {
   box-shadow:
     0 1px 2px rgba(0, 0, 0, 0.04),
-    0 8px 24px rgba(0, 0, 0, 0.05);
+    0 8px 24px rgba(0, 0, 0, 0.04);
 }
 
 .ring-ats {
   transform: rotate(-90deg);
+}
+
+.bridge-line {
+  background: linear-gradient(90deg, transparent, #c9a227, transparent);
+  height: 1px;
 }
 
 @media (prefers-reduced-motion: reduce) {

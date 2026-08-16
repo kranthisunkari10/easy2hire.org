@@ -15,7 +15,7 @@ export function MobileMenu({ onClose }: { onClose: () => void }) {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.2 }}
     >
-      <div className="flex h-14 items-center justify-between border-b border-black/[0.08] px-4">
+      <div className="flex h-16 items-center justify-between border-b border-line px-4">
         <Link
           to={ROUTES.home}
           onClick={() => {
@@ -24,7 +24,7 @@ export function MobileMenu({ onClose }: { onClose: () => void }) {
           }}
           className="flex items-center"
         >
-          <Logo size={32} />
+          <Logo size={34} />
         </Link>
         <button
           type="button"
@@ -66,15 +66,15 @@ export function MobileMenu({ onClose }: { onClose: () => void }) {
               }}
               className={({ isActive }) =>
                 cn(
-                  'flex items-center justify-between border-b border-black/[0.06] py-3.5 text-[17px] font-semibold tracking-[-0.03em]',
-                  isActive ? 'text-orange' : 'text-label',
+                  'flex items-center justify-between border-b border-line py-4 text-[18px] font-medium tracking-[-0.03em]',
+                  isActive ? 'text-blue' : 'text-label',
                 )
               }
             >
               {({ isActive }) => (
                 <>
                   {item.label}
-                  <Chevron className={isActive ? 'text-orange' : 'text-tertiary'} />
+                  <Chevron className={isActive ? 'text-blue' : 'text-tertiary'} />
                 </>
               )}
             </NavLink>
@@ -82,12 +82,12 @@ export function MobileMenu({ onClose }: { onClose: () => void }) {
         ))}
       </motion.nav>
 
-      <div className="border-t border-black/[0.06] p-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
-        <Button to={ROUTES.getStarted} className="w-full py-3 text-[15px]" onClick={onClose}>
-          Get started
+      <div className="border-t border-line p-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
+        <Button to={ROUTES.getStarted} variant="gold" className="w-full py-3 text-[15px]" onClick={onClose}>
+          Begin
         </Button>
         <Button to={ROUTES.contact} variant="ghost" className="mt-2 w-full py-3 text-[15px]" onClick={onClose}>
-          Talk to our team
+          Talk to the studio
         </Button>
       </div>
     </motion.div>

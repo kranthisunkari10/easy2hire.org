@@ -14,10 +14,9 @@ export function Reveal({
   return (
     <motion.div
       className={cn(className)}
-      initial={{ opacity: 0, y: 14 }}
+      initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-48px' }}
-      whileHover={{ y: -2 }}
       transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
@@ -29,29 +28,31 @@ export function SectionHead({
   eyebrow,
   title,
   body,
+  align = 'center',
 }: {
   eyebrow?: string
   title: string
   body?: string
+  align?: 'center' | 'left'
 }) {
   return (
-    <div className="mx-auto max-w-[560px] text-center">
+    <div className={cn(align === 'center' && 'mx-auto max-w-[580px] text-center')}>
       {eyebrow ? (
-        <p className="mb-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-orange">
+        <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-gold-deep">
           {eyebrow}
         </p>
       ) : null}
-      <h2 className="text-[26px] font-semibold tracking-[-0.03em] text-label md:text-[30px]">
+      <h2 className="text-[28px] font-semibold tracking-[-0.03em] text-label md:text-[34px]">
         {title}
       </h2>
-      {body ? <p className="mt-2 text-[13.5px] leading-relaxed text-secondary">{body}</p> : null}
+      {body ? <p className="mt-3 text-[15px] leading-relaxed text-secondary">{body}</p> : null}
     </div>
   )
 }
 
 export function PageHero(props: { eyebrow?: string; title: string; body?: string }) {
   return (
-    <section className="mesh px-4 py-12">
+    <section className="hero-bridge px-4 py-16">
       <SectionHead {...props} />
     </section>
   )

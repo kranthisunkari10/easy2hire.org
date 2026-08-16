@@ -13,10 +13,10 @@ export type Plan = {
 export const SILVER: Plan = {
   id: 'silver',
   name: 'Silver',
-  eyebrow: 'You apply, we prepare',
+  eyebrow: 'You apply · we prepare',
   price: 65,
   blurb:
-    'Generate job-specific, ATS-ready resumes with the same tooling our specialists use — then apply on your schedule.',
+    'Get a job-specific, ATS-ready resume for every posting — then send applications on your own schedule.',
   features: [
     'Unlimited job-specific resumes',
     '90+ ATS score on every resume',
@@ -36,7 +36,7 @@ export const GOLD: Plan = {
   price: 300,
   popular: true,
   blurb:
-    'Our team runs the application process while you study, certify, and interview. Maximum coverage, minimum grind.',
+    'Specialists run daily outreach while you study, certify, and interview. Wide coverage without the grind.',
   features: [
     'Premium resume tailored to every job',
     '95+ ATS-optimized score target',

@@ -1,6 +1,6 @@
 # TalentBridge
 
-Marketing site for Easy2Hire, published on GitHub Pages.
+Marketing site for TalentBridge, published on GitHub Pages.
 
 **Live:** https://kranthisunkari10.github.io/talentbridge/
 
@@ -21,4 +21,4 @@ npm run dev
 
 ## Custom domain later
 
-When you own `easy2hire.org`, add a `public/CNAME` file, set Vite `base` to `/`, and point DNS A records at GitHub Pages.
+When you own `talentbridge.org`, add a `public/CNAME` file, set Vite `base` to `/`, and point DNS A records at GitHub Pages.

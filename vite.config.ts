@@ -34,5 +34,5 @@ function htmlSecurity() {
 
 export default defineConfig(({ command }) => ({
   plugins: [react(), tailwindcss(), htmlSecurity()],
-  base: command === 'build' ? '/easy2hire.org/' : '/',
+  base: command === 'build' ? '/talentbridge/' : '/',
 }))

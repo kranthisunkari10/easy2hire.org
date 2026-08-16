@@ -49,7 +49,7 @@ export function Seo({ title, description }: { title: string; description: string
     canonical.setAttribute('href', url)
 
     const ogImage = document.querySelector('meta[property="og:image"]')
-    if (ogImage) ogImage.setAttribute('content', `${SITE.url}/easy2hire.png`)
+    if (ogImage) ogImage.setAttribute('content', `${SITE.url}/og.png`)
   }, [title, description, pathname])
 
   return null

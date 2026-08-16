@@ -3,21 +3,21 @@ import { getStartedPath } from '../../config/routes'
 
 export function BrandCta() {
   return (
-    <div className="cta-aurora relative overflow-hidden rounded-[22px] px-6 py-12 text-center text-white">
-      <div className="pointer-events-none absolute -right-8 top-0 h-40 w-40 rounded-full bg-white/20 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-10 -left-6 h-36 w-36 rounded-full bg-black/10 blur-3xl" />
-      <p className="relative text-[12px] font-semibold uppercase tracking-[0.14em] text-white">
-        Get hired
+    <div className="cta-panel relative overflow-hidden rounded-[18px] px-6 py-14 text-center text-white">
+      <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/80">
+        Cross the bridge
       </p>
-      <h2 className="relative mt-2 text-[26px] font-semibold tracking-[-0.03em] text-white md:text-[30px]">
-        You grow the skill. We open the door.
+      <h2 className="mt-3 text-[28px] font-semibold tracking-[-0.03em] text-white md:text-[34px]">
+        Stay in study mode. We put you on the shortlist.
       </h2>
-      <p className="relative mx-auto mt-2 max-w-[46ch] text-[14px] text-white">
-        Start Silver if you want control, or Gold if you want us to apply every day.
+      <p className="mx-auto mt-3 max-w-[46ch] text-[15px] text-white/85">
+        Start Silver if you want control of every send, or Gold if you want specialists applying every day.
       </p>
-      <div className="relative z-10 mt-5 flex flex-wrap justify-center gap-2">
-        <Button to={getStartedPath('gold')}>Start Gold</Button>
-        <Button to={getStartedPath('silver')} variant="inverse" className="btn-on-color">
+      <div className="relative z-10 mt-6 flex flex-wrap justify-center gap-2">
+        <Button to={getStartedPath('gold')} variant="gold">
+          Start Gold
+        </Button>
+        <Button to={getStartedPath('silver')} variant="inverse">
           Start Silver
         </Button>
       </div>

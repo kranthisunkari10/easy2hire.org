@@ -1,10 +1,10 @@
 import type { InputHTMLAttributes, ReactNode, SelectHTMLAttributes, TextareaHTMLAttributes } from 'react'
 
 export const controlClass =
-  'w-full rounded-[12px] border border-black/[0.08] bg-fill px-3 py-2 text-[13px] outline-none focus:border-orange/50'
+  'w-full rounded-[12px] border border-line bg-fill px-3 py-2.5 text-[14px] text-label outline-none transition-colors focus:border-blue'
 
 function Label({ children }: { children: ReactNode }) {
-  return <span className="mb-1 block text-[12px] font-medium text-secondary">{children}</span>
+  return <span className="mb-1.5 block text-[12px] font-medium text-secondary">{children}</span>
 }
 
 type TextProps = {

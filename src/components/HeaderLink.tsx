@@ -21,9 +21,8 @@ export function HeaderLink({
       }}
       className={({ isActive }) =>
         cn(
-          'nav-link rounded-full px-3 py-1.5 text-[13.5px] font-medium text-secondary transition-all duration-200',
-          !isActive && 'hover:bg-orange/10 hover:text-orange',
-          isActive && 'is-active bg-orange text-white shadow-[0_4px_14px_rgba(255,122,26,0.28)]',
+          'nav-link px-3 py-1.5 text-[13.5px] font-medium transition-colors duration-200',
+          isActive ? 'is-active text-blue' : 'text-label hover:text-blue',
         )
       }
     >

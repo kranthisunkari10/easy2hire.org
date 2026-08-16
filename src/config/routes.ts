@@ -27,7 +27,7 @@ export const NAV = [
 
 export const FOOTER = [
   {
-    title: 'Product',
+    title: 'Studio',
     links: [
       { to: ROUTES.services, label: 'Services' },
       { to: ROUTES.howItWorks, label: 'How it works' },

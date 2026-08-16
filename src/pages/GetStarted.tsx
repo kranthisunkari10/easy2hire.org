@@ -19,7 +19,7 @@ export function GetStarted() {
   const [error, setError] = useState('')
 
   const subject = useMemo(
-    () => (plan ? `Easy2Hire ${plan} inquiry` : 'Easy2Hire inquiry'),
+    () => (plan ? `TalentBridge ${plan} inquiry` : 'TalentBridge inquiry'),
     [plan],
   )
 
@@ -46,7 +46,7 @@ export function GetStarted() {
   return (
     <>
       <Seo
-        title="Get started — Easy2Hire"
+        title="Get started — TalentBridge"
         description="Tell us your target role and preferred plan. We will follow up with next steps for Silver or Gold."
       />
       <PageHero
@@ -54,10 +54,10 @@ export function GetStarted() {
         title="Tell us where you want to land."
         body="Share a few details. We will reply with a plan, timeline, and what we need from you."
       />
-      <section className="px-4 pb-12">
+      <section className="px-4 py-14">
         <form
           onSubmit={onSubmit}
-          className="relative mx-auto max-w-[520px] space-y-3 rounded-[20px] bg-white p-5 card-shadow"
+          className="relative mx-auto max-w-[520px] space-y-4 rounded-[12px] border border-line bg-elevated p-6 card-shadow"
           noValidate
         >
           <HoneypotField />
@@ -76,12 +76,7 @@ export function GetStarted() {
             maxLength={FORM_LIMITS.phone}
             autoComplete="tel"
           />
-          <SelectField label="Country" name="country" defaultValue="USA">
-            {SITE.markets.map((m) => (
-              <option key={m}>{m}</option>
-            ))}
-            <option>Other</option>
-          </SelectField>
+          <input type="hidden" name="country" value="USA" />
           <TextField
             label="Target role"
             name="role"
@@ -101,7 +96,7 @@ export function GetStarted() {
             placeholder="Certifications, visa notes, or when you can start."
           />
           {status === 'error' ? (
-            <p className="text-[12.5px] text-[#c41e3a]" role="alert">
+            <p className="text-[13px] text-[#9b2c2c]" role="alert">
               {error}{' '}
               <a className="text-blue" href={`mailto:${SITE.email}`}>
                 {SITE.email}
@@ -111,7 +106,7 @@ export function GetStarted() {
           <Button type="submit" className="w-full" disabled={status === 'sending'}>
             {status === 'sending' ? 'Sending…' : 'Send'}
           </Button>
-          <p className="text-center text-[11.5px] text-tertiary">
+          <p className="text-center text-[12px] text-tertiary">
             Or email{' '}
             <a className="text-blue" href={`mailto:${SITE.email}`}>
               {SITE.email}

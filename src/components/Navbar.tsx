@@ -38,19 +38,19 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50">
       <div className={cn('header-bar', scrolled && 'is-scrolled')}>
-        <div className="mx-auto flex h-14 max-w-[1080px] items-center justify-between px-4 md:h-16">
+        <div className="mx-auto flex h-16 max-w-[1120px] items-center justify-between px-4">
           <Link
             to={ROUTES.home}
-            className="flex items-center transition-transform duration-200 hover:scale-[1.03]"
+            className="flex items-center"
             onClick={() => {
               setOpen(false)
               scrollToTop()
             }}
           >
-            <Logo size={34} />
+            <Logo size={36} />
           </Link>
 
-          <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
+          <nav className="hidden items-center gap-0.5 md:flex" aria-label="Primary">
             {NAV.map((item) => (
               <HeaderLink key={item.to} to={item.to} end={item.end}>
                 {item.label}
@@ -59,12 +59,12 @@ export function Navbar() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <Button to={ROUTES.getStarted} className="hidden sm:inline-flex">
-              Get started
+            <Button to={ROUTES.getStarted} variant="gold" className="hidden sm:inline-flex">
+              Begin
             </Button>
             <button
               type="button"
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-fill md:hidden"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-fill text-label md:hidden"
               aria-label={open ? 'Close menu' : 'Open menu'}
               aria-expanded={open}
               onClick={() => setOpen((v) => !v)}

@@ -1,50 +1,50 @@
 export const WHY = [
   {
-    title: 'Affordable and clear',
-    body: 'Professional career support at student-friendly prices. Two plans, no hidden fees.',
+    title: 'Clear pricing, no fog',
+    body: 'Two studio plans at student-friendly rates. You always know what is included before you start.',
   },
   {
-    title: 'Applications done for you',
-    body: 'Gold handles daily IT applications and customizes every resume to the job description.',
+    title: 'Applications on your behalf',
+    body: 'Gold covers daily IT outreach. Every posting gets a resume written against that job description.',
   },
   {
-    title: 'A dashboard you can trust',
-    body: 'See every job we applied to, the description used, and the resume generated.',
+    title: 'A desk you can inspect',
+    body: 'Open the portal and see each role, the description we used, and the file we sent. Nothing hidden.',
   },
   {
-    title: 'Built for students',
-    body: 'Focus on learning, certifications, and interviews. We handle tailoring, outreach, and tracking.',
+    title: 'Built around study time',
+    body: 'You keep learning, certifying, and interviewing. We handle tailoring, outreach, and the paper trail.',
   },
   {
-    title: 'Trusted across four countries',
-    body: 'Candidates in the USA, Canada, Australia, and New Zealand use Easy2Hire to convert skills into interviews.',
+    title: 'Focused on the USA',
+    body: 'TalentBridge helps IT candidates in the United States turn skills into interviews.',
   },
   {
-    title: 'Human team, precise tooling',
-    body: 'AI speeds up matching and scoring. Specialists review, apply, and coach so nothing feels generic.',
+    title: 'People plus precise tools',
+    body: 'Matching and scoring move faster with software. Specialists still review, apply, and coach so nothing feels generic.',
   },
 ] as const
 
 export const STEPS = [
   {
     n: '01',
-    title: 'Share goals and samples',
-    body: 'Tell us your target roles, locations, and a current resume. We align on a strategy that fits your timeline.',
+    title: 'Map the target',
+    body: 'Share roles, locations, and a current resume. We set a search plan that matches your timeline.',
   },
   {
     n: '02',
-    title: 'Resumes that match the job',
-    body: 'Each description gets a tailored, ATS-structured resume — 90+ on Silver, 95+ target on Gold.',
+    title: 'Write to the posting',
+    body: 'Each description gets an ATS-structured resume — 90+ on Silver, 95+ target on Gold.',
   },
   {
     n: '03',
-    title: 'Apply and track',
-    body: 'You apply with our files, or we apply for you. Your portal shows status, descriptions, and downloads.',
+    title: 'Send and watch',
+    body: 'You apply with our files, or we apply for you. The portal shows status, descriptions, and downloads.',
   },
   {
     n: '04',
-    title: 'Interview and certify',
-    body: 'Mock interviews, feedback, and certification roadmaps for AWS, Azure, Salesforce, and more.',
+    title: 'Interview with a plan',
+    body: 'Mock loops, written feedback, and certification roadmaps for AWS, Azure, Salesforce, and more.',
   },
 ] as const
 
@@ -59,19 +59,19 @@ export const STORIES = [
     quote:
       'Silver was the right pace. Every resume cleared 90 on ATS, and recruiter replies started within two weeks of applying myself.',
     name: 'Elena V.',
-    place: 'Toronto, ON',
+    place: 'Seattle, WA',
   },
   {
     quote:
       'The mock interviews felt like the real loop. I walked into onsite conversations with a plan, not guesswork.',
     name: 'Noah K.',
-    place: 'Melbourne, AU',
+    place: 'Dallas, TX',
   },
   {
     quote:
       'Switching from support into cloud was messy until the resumes actually matched each posting. Scores jumped, and so did callbacks.',
     name: 'Priya S.',
-    place: 'Auckland, NZ',
+    place: 'New York, NY',
   },
   {
     quote:
@@ -83,7 +83,7 @@ export const STORIES = [
     quote:
       'The portal made it honest — I could see every job, every file. That transparency is why I stayed on Gold.',
     name: 'Sofia L.',
-    place: 'Vancouver, BC',
+    place: 'Denver, CO',
   },
 ] as const
 

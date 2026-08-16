@@ -1,7 +1,7 @@
-const DEFAULT_ORIGIN = 'https://kranthisunkari10.github.io/easy2hire.org'
+const DEFAULT_ORIGIN = 'https://kranthisunkari10.github.io/talentbridge'
 
 export const SITE = {
-  name: 'Easy2Hire',
+  name: 'TalentBridge',
   url: (import.meta.env.VITE_SITE_URL as string | undefined)?.replace(/\/$/, '') || DEFAULT_ORIGIN,
   email: 'kranhisunkari10@gmail.com',
   formEndpoint: 'https://formsubmit.co/ajax/kranhisunkari10@gmail.com',
@@ -9,7 +9,7 @@ export const SITE = {
   phoneTel: '+917793933393',
   whatsapp: '917793933393',
   address: 'Hyderabad, Telangana, India',
-  markets: ['USA', 'Canada', 'Australia', 'New Zealand'] as const,
+  markets: ['USA'] as const,
 } as const
 
 export const FORM_LIMITS = {
