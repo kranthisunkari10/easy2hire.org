@@ -2,7 +2,7 @@
 
 Marketing site for Easy2Hire, published on GitHub Pages.
 
-**Live:** https://kranthisunkari10.github.io/easy2hire.org/
+**Live:** https://kranthisunkari10.github.io/talentbridge/
 
 Stack: Vite, React, TypeScript, Tailwind CSS, Framer Motion.
 
